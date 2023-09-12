@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './FilterForm/FilterForm';
 import { ContactList } from './ContactList/ContactList';
-import { v4 as uuidv4 } from 'uuid';
-import css from './App.module.css';
+import { FormContainer, Title } from './App.styled';
 
 export function App() {
   const [contacts, setContacts] = useState(
@@ -51,12 +51,12 @@ export function App() {
   };
 
   return (
-    <div className={css.formContainer}>
-      <h1 className={css.title}>Phonebook</h1>
+    <FormContainer>
+      <Title>Phonebook</Title>
       <ContactForm onSubmit={formSubmitHandler} />
-      <h2 className={css.title}>Contacts</h2>
+      <Title>Contacts</Title>
       <Filter onChange={filterHandler} value={filter} />
       <ContactList contacts={onFilterChange()} onDelete={deleteHandler} />
-    </div>
+    </FormContainer>
   );
 }
